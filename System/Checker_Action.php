@@ -32,14 +32,14 @@ class Checker_Action extends Crayner_Machine
 			print (count($this->list))."  |  ".$aa."  |  ".($this->check($aa))."\n";
 		}
 		$this->close($this->op);
-		$this->close($this->do);
+		$this->close($this->dt);
 		$this->close($this->dt);
 	}
 	private function check($c)
 	{
 		$data = parent::curl("http://wildan-fajriansyah.org/mybook.php?code=".$c);
 		$a = json_decode($data,true);
-		$this->write($this->do,$c."\n");
+		$this->write($this->dt,$c."\n");
 		$this->write($this->op,$c.'|'.$data."\n");
 		if($a!==null or $a['result']!=="false,"){
 			$msg = "Salah";
