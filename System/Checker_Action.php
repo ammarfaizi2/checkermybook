@@ -23,13 +23,13 @@ class Checker_Action extends Crayner_Machine
 		print "My Book Checker\nHasil Checker disimpan di rr.txt\nHasil Sukses di simpan di success.txt\n\n\n\nMasukkan jumlah : ";
 		$cycle = defined('STDIN')?(int)trim(fgets(STDIN,1024)):$_GET['lp'];
 		flush();
-		sleep(2);
+		#sleep(2);
 		print "Sedang memulai {$cycle} kali check...\n";
 		flush();
-		sleep(1);
+		#sleep(1);
 		print "\n\n";
 		flush();
-		sleep(1);
+		#sleep(1);
 		$this->dt = $this->open('dtrr.txt');
 		$this->op = $this->open('rr.txt');
 		$this->do = $this->open('success.txt');
