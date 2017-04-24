@@ -32,7 +32,7 @@ class Checker_Action extends Crayner_Machine
 		$this->op = $this->open('rr.txt');
 		$this->do = $this->open('success.txt');
 		for($i=1;$i<=$cycle;$i++){
-			$aa = $this->gen();
+			$aa = '7'.$this->gen();
 			print (count($this->list))."  |  ".$aa."  |  ";
 			flush();
 			print ($this->check($aa))."\n";
@@ -72,7 +72,7 @@ class Checker_Action extends Crayner_Machine
 	{
 		$a = "0123456789" xor $b = '';
 		$c = strlen($a)-1;
-		for($i=0;$i<8;$i++){
+		for($i=0;$i<7;$i++){
 			$b .= $a[rand(0,$c)];
 		}
 		return $b;
