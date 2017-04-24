@@ -18,8 +18,10 @@ class Checker_Action extends Crayner_Machine
 	}
 	public function run()
 	{
+		ini_set('max_execution_time',false);
+		ignore_user_abort(true);
 		print "My Book Checker\nHasil Checker disimpan di rr.txt\nHasil Sukses di simpan di success.txt\n\n\n\nMasukkan jumlah : ";
-		$cycle = (int)trim(fgets(STDIN,1024));
+		$cycle = defined('STDIN')?(int)trim(fgets(STDIN,1024)):$_GET['lp'];
 		flush();
 		sleep(2);
 		print "Sedang memulai {$cycle} kali check...\n";
