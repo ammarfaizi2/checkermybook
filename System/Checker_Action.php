@@ -10,42 +10,56 @@ use System\Crayner_Machine;
 */
 class Checker_Action extends Crayner_Machine
 {
-	const u = '	http://wildan-fajriansyah.org/mybook.php?code=';
 	private $list;
 	public function __construct()
 	{
-		$this->list = file_exists('rr.txt')?explode("\n",file_get_contents('rr.txt')):array();
+		$this->list = file_exists('dtrr.txt')?explode("\n",file_get_contents('dtrr.txt')):array();
 	}
 	public function run()
 	{
 		print "My Book Checker\nHasil Checker disimpan di rr.txt\nHasil Sukses di simpan di success.txt\n\n\n\nMasukkan jumlah : ";
 		$cycle = (int)trim(fgets(STDIN,1024));
 		sleep(2);
-		print "Memulai...\n";
+		print "Sedang memulai {$cycle} kali check...\n";
 		sleep(1);
 		print "\n\n";
 		sleep(1);
+		$this->dt = $this->open('dtrr.txt');
+		$this->op = $this->open('rr.txt');
+		$this->do = $this->open('success.txt');
 		for($i=1;$i<=$cycle;$i++){
 			$aa = $this->gen();
-			print (count($this->list))."\t|\t".$aa."\t".($this->check($aa))."\n";
+			print (count($this->list))."  |  ".$aa."  |  ".($this->check($aa))."\n";
 		}
+		$this->close($this->op);
+		$this->close($this->do);
+		$this->close($this->dt);
 	}
 	private function check($c)
 	{
-		
-		
+		$data = parent::curl("http://wildan-fajriansyah.org/mybook.php?code=".$c);
+		$a = json_decode($data,true);
+		$this->write($this->do,$c."\n");
+		$this->write($this->op,$c.'|'.$data."\n");
+		if($a!==null or $a['result']!=="false,"){
+			$msg = "Salah";
+		} else {
+			$msg = "Benar";
+			$this->write($this->do,$c."\t|\t".$data);
+		}
+		return $msg;
 	}
 	private function open($file)
 	{
-		$this->save = fopen('a',$file);
+		return fopen($file,'a');
 	}
-	private function write($content)
+	private function write($hp,$content)
 	{
-		return fwrite($this->save,$content);
+		return fwrite($hp,$content);
 	}
-	private function close()
+	private function close($hp)
 	{
-		return fclose($this->save);
+		return fclose($hp);
 	}
 	private function rstr()
 	{
