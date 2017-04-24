@@ -13,16 +13,20 @@ class Checker_Action extends Crayner_Machine
 	private $list;
 	public function __construct()
 	{
+		header("Content-type:text/plain");
 		$this->list = file_exists('dtrr.txt')?explode("\n",file_get_contents('dtrr.txt')):array();
 	}
 	public function run()
 	{
 		print "My Book Checker\nHasil Checker disimpan di rr.txt\nHasil Sukses di simpan di success.txt\n\n\n\nMasukkan jumlah : ";
 		$cycle = (int)trim(fgets(STDIN,1024));
+		flush();
 		sleep(2);
 		print "Sedang memulai {$cycle} kali check...\n";
+		flush();
 		sleep(1);
 		print "\n\n";
+		flush();
 		sleep(1);
 		$this->dt = $this->open('dtrr.txt');
 		$this->op = $this->open('rr.txt');
@@ -30,7 +34,9 @@ class Checker_Action extends Crayner_Machine
 		for($i=1;$i<=$cycle;$i++){
 			$aa = $this->gen();
 			print (count($this->list))."  |  ".$aa."  |  ";
+			flush();
 			print ($this->check($aa))."\n";
+			flush();
 		}
 		$this->close($this->op);
 		$this->close($this->do);
