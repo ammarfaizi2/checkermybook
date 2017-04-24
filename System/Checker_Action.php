@@ -18,11 +18,34 @@ class Checker_Action extends Crayner_Machine
 	}
 	public function run()
 	{
+		print "My Book Checker\nHasil Checker disimpan di rr.txt\nHasil Sukses di simpan di success.txt\n\n\n\nMasukkan jumlah : ";
+		$cycle = (int)trim(fgets(STDIN,1024));
+		sleep(2);
+		print "Memulai...\n";
+		sleep(1);
+		print "\n\n";
+		sleep(1);
+		for($i=1;$i<=$cycle;$i++){
+			$aa = $this->gen();
+			print (count($this->list))."\t|\t".$aa."\t".($this->check($aa))."\n";
+		}
+	}
+	private function check($c)
+	{
+		
 		
 	}
 	private function open($file)
 	{
-		return fopen('a',$file);
+		$this->save = fopen('a',$file);
+	}
+	private function write($content)
+	{
+		return fwrite($this->save,$content);
+	}
+	private function close()
+	{
+		return fclose($this->save);
 	}
 	private function rstr()
 	{
@@ -38,6 +61,7 @@ class Checker_Action extends Crayner_Machine
 		do{
 			$r = $this->rstr();
 		} while(in_array($r,$this->list));
+		$this->list[] = $r;
 		return $r;
 	}
 }
