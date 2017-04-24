@@ -54,7 +54,7 @@ class Checker_Action extends Crayner_Machine
 			$msg = "Salah";
 		} else {
 			$msg = "Benar";
-			$this->write($this->do,$c."\t|\t".$data);
+			$this->write($this->do,$c."\t|\t".$data."\n");
 		}
 		return $msg;
 	}
