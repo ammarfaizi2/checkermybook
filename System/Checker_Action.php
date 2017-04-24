@@ -50,7 +50,7 @@ class Checker_Action extends Crayner_Machine
 		$a = json_decode($data,true);
 		$this->write($this->dt,$c."\n");
 		$this->write($this->op,$c.'|'.$data."\n");
-		if($a===null or $a['result']=="false,"){
+		if($a===null or $a['result']==false){
 			$msg = "Salah";
 		} else {
 			$msg = "Benar";
