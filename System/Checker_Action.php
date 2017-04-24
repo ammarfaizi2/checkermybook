@@ -29,7 +29,8 @@ class Checker_Action extends Crayner_Machine
 		$this->do = $this->open('success.txt');
 		for($i=1;$i<=$cycle;$i++){
 			$aa = $this->gen();
-			print (count($this->list))."  |  ".$aa."  |  ".($this->check($aa))."\n";
+			print (count($this->list))."  |  ".$aa."  |  ";
+			print ($this->check($aa))."\n";
 		}
 		$this->close($this->op);
 		$this->close($this->dt);
