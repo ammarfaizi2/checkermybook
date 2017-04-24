@@ -33,7 +33,7 @@ class Checker_Action extends Crayner_Machine
 			print ($this->check($aa))."\n";
 		}
 		$this->close($this->op);
-		$this->close($this->dt);
+		$this->close($this->do);
 		$this->close($this->dt);
 	}
 	private function check($c)
